@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,follow">
+    <meta name="description" content="{{ .Description | default .Site.Title }}">
+    <link rel="canonical" href="{{ .Permalink }}">
+    <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+  </head>
+  <body>
+    {{ block "main" . }}{{ end }}
+    <script src="{{ "js/site.js" | relURL }}" defer></script>
+  </body>
+</html>

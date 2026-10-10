@@ -1,3 +1,7 @@
-baseURL = 'https://example.org/'
-locale = 'en-us'
-title = 'My New Hugo Project'
+baseURL = 'https://yhcb.buygearpump.com/'
+languageCode = 'en-us'
+title = 'YHCB Test Landing Page'
+disableKinds = ['taxonomy', 'term']
+
+[params]
+  pageMode = 'test'

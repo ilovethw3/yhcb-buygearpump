@@ -59,3 +59,16 @@ YHCB 页面可以链接到主站的完整产品资料，但不应依赖主站的
 ## Before implementation
 
 The exact YHCB model name, size table, verified product images, form destination, analytics identifiers, and hosting provider still need to be confirmed. Until then, agents must use placeholders that are clearly marked and must not invent specifications.
+
+## Cloudflare Pages test deployment
+
+This repository is intended to be connected to Cloudflare Pages through GitHub.
+
+- Framework preset: `Hugo`
+- Build command: `hugo --minify`
+- Build output directory: `public`
+- Production branch: `main`
+- Custom domain: `yhcb.buygearpump.com`
+- Hugo version: `0.151.0` or newer
+
+The current page is explicitly a test page. Its quote form does not send lead data until an approved endpoint is configured.

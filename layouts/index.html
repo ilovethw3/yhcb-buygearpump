@@ -1,0 +1,96 @@
+{{ define "main" }}
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ .Site.BaseURL }}" aria-label="YHCB home">BuyGearPump <span>/ YHCB</span></a>
+    <a class="header-link" href="#quote">Request a quote</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">YHCB product family</p>
+        <h1>A simple test page for the YHCB landing site.</h1>
+        <p class="lede">This temporary page confirms that the independent Hugo site, custom domain, responsive layout, and quote flow are wired together.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#quote" data-event="cta_click">Get a test quote</a>
+          <span class="status-pill"><span class="status-dot"></span> Test mode</span>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="Test page status">
+        <div class="card-mark">YHCB</div>
+        <p class="card-kicker">SITE CHECK</p>
+        <h2>Domain-ready landing page</h2>
+        <p>Responsive HTML, local CSS and a small amount of JavaScript. No main-site runtime assets are required.</p>
+        <div class="card-line"><span>Host</span><strong>yhcb.buygearpump.com</strong></div>
+        <div class="card-line"><span>Mode</span><strong>Preview / test</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">What is included</p>
+        <h2>The basic conversion path is ready to test.</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="feature-number">01</span>
+          <h3>Fast first screen</h3>
+          <p>A focused hero section with a clear call to action for ad traffic.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-number">02</span>
+          <h3>Responsive layout</h3>
+          <p>The layout adapts to mobile screens without relying on a full theme.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-number">03</span>
+          <h3>Tracking-ready form</h3>
+          <p>UTM parameters and the selected test model are kept in hidden fields.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section quote-section" id="quote">
+    <div class="container quote-grid">
+      <div>
+        <p class="eyebrow">Test inquiry</p>
+        <h2>Try the quote interaction</h2>
+        <p class="section-copy">This form is intentionally in test mode. It does not send data to a real sales inbox until an approved endpoint is provided.</p>
+      </div>
+      <form class="quote-form" id="quote-form">
+        <input type="hidden" name="product" value="YHCB">
+        <input type="hidden" name="selected_model" value="YHCB-TEST">
+        <input type="hidden" name="utm_source">
+        <input type="hidden" name="utm_medium">
+        <input type="hidden" name="utm_campaign">
+        <input type="hidden" name="utm_term">
+        <input type="hidden" name="gclid">
+
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required>
+
+        <label for="email">Work email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" placeholder="Tell us what you would like to test."></textarea>
+
+        <button class="button button-primary" type="submit">Submit test inquiry</button>
+        <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>YHCB test landing page</span>
+    <span>Independent Hugo site · {{ now.Year }}</span>
+  </div>
+</footer>
+{{ end }}
