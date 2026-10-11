@@ -4,4 +4,4 @@ title = 'YHCB Mobile Pump | BuyGearPump'
 disableKinds = ['taxonomy', 'term']
 
 [params]
-  pageMode = 'quote-preview'
+  pageMode = 'quote-live'

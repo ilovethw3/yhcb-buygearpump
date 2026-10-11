@@ -105,9 +105,42 @@
 
     form.addEventListener('submit', function (event) {
       event.preventDefault();
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'lead_submit', selected_model: selectedModel && selectedModel.value });
-      if (status) status.textContent = 'Preview mode: the form is ready, but no message was sent because the approved endpoint has not been added yet.';
+      if (form.dataset.formMode === 'test') {
+        if (status) status.textContent = 'Test mode: no message was sent.';
+        return;
+      }
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.setAttribute('aria-busy', 'true');
+      }
+      if (status) status.textContent = 'Sending your inquiry…';
+
+      fetch(form.action, {
+        method: form.method || 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Formspree submission failed');
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'lead_submit',
+            selected_model: selectedModel && selectedModel.value,
+            selected_configuration: selectedConfiguration && selectedConfiguration.value
+          });
+          if (status) status.textContent = 'Thanks — your inquiry has been sent.';
+        })
+        .catch(function () {
+          if (status) status.textContent = 'We couldn’t send your inquiry. Please try again or contact us directly.';
+        })
+        .finally(function () {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.removeAttribute('aria-busy');
+          }
+        });
     });
   }
 })();

@@ -54,6 +54,7 @@ h3 { margin: 0 0 10px; font-size: 1.35rem; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 12px; border: 0; border-radius: 5px; padding: 15px 23px; font-weight: 900; text-decoration: none; cursor: pointer; transition: color .2s ease, background .2s ease, transform .2s ease, box-shadow .2s ease; }
 .button-orange { color: #151b14; background: var(--orange); box-shadow: 0 5px 0 var(--orange-dark); }
 .button-orange:hover { background: #ffb34a; box-shadow: 0 3px 0 var(--orange-dark); transform: translateY(2px); }
+.button:disabled { opacity: .65; cursor: wait; transform: none; }
 .hero-link { display: inline-flex; align-items: center; gap: 9px; color: #fff; font-size: .9rem; font-weight: 800; text-decoration: none; }
 .hero-link:hover { color: var(--lime); }
 .play-icon { display: grid; place-items: center; width: 29px; height: 29px; padding-left: 2px; border: 1px solid #a7bcaa; border-radius: 50%; color: var(--lime); font-size: .65rem; }
