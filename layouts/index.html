@@ -1,96 +1,203 @@
 {{ define "main" }}
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="{{ .Site.BaseURL }}" aria-label="YHCB home">BuyGearPump <span>/ YHCB</span></a>
-    <a class="header-link" href="#quote">Request a quote</a>
+{{ $product := .Site.Data.yhcb.product }}
+{{ $fieldImage := resources.Get "主图-01-英文.jpg" }}
+{{ $cleaningImage := resources.Get "AaElVi30a8nLXzhg-BRoQA-英文.png" }}
+{{ $selectedVariant := index $product.variants 0 }}
+{{ $configImage := resources.Get $selectedVariant.image }}
+{{ $heroSlide := index $product.hero_gallery 0 }}
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="https://buygearpump.com/" aria-label="Visit BuyGearPump main website"><span class="brand-mark">BG</span><span>BuyGearPump</span></a>
+    <div class="topbar-right"><span class="topbar-note">YHCB mobile pump</span><a href="#quote" class="topbar-cta" data-event="cta_click">Request a quote <span>↗</span></a></div>
   </div>
 </header>
 
 <main>
-  <section class="hero">
+  <section class="hero" id="top">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">YHCB product family</p>
-        <h1>A simple test page for the YHCB landing site.</h1>
-        <p class="lede">This temporary page confirms that the independent Hugo site, custom domain, responsive layout, and quote flow are wired together.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#quote" data-event="cta_click">Get a test quote</a>
-          <span class="status-pill"><span class="status-dot"></span> Test mode</span>
+        <p class="eyebrow eyebrow-light">YHCB / MOBILE TRANSFER EQUIPMENT</p>
+        <h1>Move thick fluids across the site.</h1>
+        <div class="hero-copy-lower">
+          <p class="hero-lede">YHCB brings the pump to the point of work — for moving manure, wastewater and sludge between collection points, tanks and work areas. Choose a pump head or complete unit to match the job.</p>
+          <div class="hero-actions">
+            <a class="button button-orange" href="#configurations" data-event="cta_click">Choose your setup</a>
+            <a class="hero-link" href="#video" data-event="video_click"><span class="play-icon">▶</span> See it running</a>
+          </div>
+          <div class="hero-proof"><span>2.5–4 in options</span><i></i><span>Pump head or complete pump</span></div>
         </div>
       </div>
-      <div class="hero-card" aria-label="Test page status">
-        <div class="card-mark">YHCB</div>
-        <p class="card-kicker">SITE CHECK</p>
-        <h2>Domain-ready landing page</h2>
-        <p>Responsive HTML, local CSS and a small amount of JavaScript. No main-site runtime assets are required.</p>
-        <div class="card-line"><span>Host</span><strong>yhcb.buygearpump.com</strong></div>
-        <div class="card-line"><span>Mode</span><strong>Preview / test</strong></div>
+      <div class="hero-visual">
+        <div class="hero-visual-top"><span>MOBILE PUMP FAMILY</span><span>YHCB</span></div>
+        <div class="hero-image-wrap">
+          <div class="hero-carousel" aria-label="YHCB product image carousel">
+            {{ range $index, $slide := $product.hero_gallery }}
+              {{ $slideImage := resources.Get $slide.src }}
+              <img class="hero-slide{{ if eq $index 0 }} is-active{{ end }}" src="{{ $slideImage.RelPermalink }}" alt="{{ $slide.alt }}" data-slide-label="{{ $slide.label }}" loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}" {{ if eq $index 0 }}fetchpriority="high"{{ end }}>
+            {{ end }}
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" data-carousel-prev aria-label="Previous product image">‹</button>
+          <button class="carousel-arrow carousel-next" type="button" data-carousel-next aria-label="Next product image">›</button>
+          <div class="carousel-dots" role="tablist" aria-label="Choose product image">
+            {{ range $index, $slide := $product.hero_gallery }}
+              <button class="carousel-dot{{ if eq $index 0 }} is-active{{ end }}" type="button" data-carousel-dot="{{ $index }}" role="tab" aria-label="Show {{ $slide.label }}" aria-selected="{{ if eq $index 0 }}true{{ else }}false{{ end }}"></button>
+            {{ end }}
+          </div>
+        </div>
+        <div class="hero-visual-bottom"><span>Shown configuration</span><strong id="hero-slide-label">{{ $heroSlide.label }}</strong></div>
+        <div class="hero-stamp"><span>Start with</span><strong>your<br>job</strong></div>
       </div>
     </div>
   </section>
 
-  <section class="section section-light">
+  <section class="signal-bar" aria-label="Product signals">
+    <div class="container signal-grid">
+      <div><span class="signal-number">01</span><span><strong>See it in action</strong><small>Field operation video</small></span></div>
+      <div><span class="signal-number">02</span><span><strong>Choose your format</strong><small>Pump head or complete pump</small></span></div>
+      <div><span class="signal-number">03</span><span><strong>Tell us your conditions</strong><small>Material, distance and power</small></span></div>
+    </div>
+  </section>
+
+  <section class="problem-section" id="details">
     <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">What is included</p>
-        <h2>The basic conversion path is ready to test.</h2>
+      <div class="section-intro problem-intro">
+        <p class="eyebrow">START WITH YOUR JOB</p>
+        <h2>Tell us what you are moving and how far it needs to go.</h2>
       </div>
-      <div class="feature-grid">
-        <article class="feature-card">
-          <span class="feature-number">01</span>
-          <h3>Fast first screen</h3>
-          <p>A focused hero section with a clear call to action for ad traffic.</p>
-        </article>
-        <article class="feature-card">
-          <span class="feature-number">02</span>
-          <h3>Responsive layout</h3>
-          <p>The layout adapts to mobile screens without relying on a full theme.</p>
-        </article>
-        <article class="feature-card">
-          <span class="feature-number">03</span>
-          <h3>Tracking-ready form</h3>
-          <p>UTM parameters and the selected test model are kept in hidden fields.</p>
-        </article>
+      <div class="problem-grid">
+        <div class="problem-copy">
+          <p class="problem-lede">Manure, wastewater and sludge vary from site to site. The material, transfer distance and available power help determine the right YHCB format.</p>
+          <div class="problem-list">
+          <article><span class="list-index">01</span><div><h3>What are you moving?</h3><p>Manure, wastewater, sludge or another fluid — start with the material.</p></div></article>
+          <article><span class="list-index">02</span><div><h3>How far does it need to go?</h3><p>Transfer distance, lift and hose route all help define the setup.</p></div></article>
+          <article><span class="list-index">03</span><div><h3>Which format fits the work?</h3><p>Choose a pump head or complete unit; the motor, hose and accessories are confirmed before quotation.</p></div></article>
+          </div>
+        </div>
+        <div class="problem-image"><img src="{{ $fieldImage.RelPermalink }}" alt="Mobile pump used in a farm wastewater setting" loading="lazy"></div>
       </div>
     </div>
   </section>
 
-  <section class="section quote-section" id="quote">
-    <div class="container quote-grid">
-      <div>
-        <p class="eyebrow">Test inquiry</p>
-        <h2>Try the quote interaction</h2>
-        <p class="section-copy">This form is intentionally in test mode. It does not send data to a real sales inbox until an approved endpoint is provided.</p>
+  <section class="workflow-section" id="applications">
+    <div class="container">
+      <div class="section-intro workflow-intro">
+        <p class="eyebrow">WHERE IT FITS</p>
+        <h2>For farms, livestock facilities and difficult fluid transfer.</h2>
       </div>
-      <form class="quote-form" id="quote-form">
+      <div class="workflow-grid">
+        <div class="workflow-image"><img src="{{ $cleaningImage.RelPermalink }}" alt="High-pressure cleaning setup in a livestock facility" loading="lazy"></div>
+        <div class="workflow-copy">
+          <p>From manure collection and wastewater handling to sludge transfer, the job can change from one area to another. YHCB provides a mobile starting point for transfer work; the final setup is confirmed against the medium, distance and available power.</p>
+          <p class="workflow-note">The image shows a livestock setting. YHCB configurations on this page are selected for manure, wastewater and sludge transfer.</p>
+          <div class="workflow-tags"><span>Manure transfer</span><span>Wastewater transfer</span><span>Sludge transfer</span><span>Mobile site work</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-section" id="video">
+    <div class="container video-grid">
+      <div class="video-copy">
+        <p class="eyebrow eyebrow-light">SEE IT IN ACTION</p>
+        <h2>See how the mobile setup works.</h2>
+        <p>This field video shows the YHCB pump in operation and how the mobile unit is positioned for the job. Use it as a practical reference, then choose the configuration closest to your site.</p>
+        <a class="text-button text-button-light" href="#configurations" data-event="cta_click">Choose your configuration <span>→</span></a>
+      </div>
+      <div class="video-shell">
+        <video controls playsinline preload="metadata" title="YHCB pump operation video">
+          <source src="https://image.141029.xyz/video/yhcb-operation-01.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section class="config-section" id="configurations">
+    <div class="container">
+      <div class="section-intro config-intro">
+        <p class="eyebrow">CHOOSE YOUR CONFIGURATION</p>
+        <h2>Choose the YHCB format that matches your job.</h2>
+      </div>
+      <div class="config-layout">
+        <div class="config-copy">
+          <p>Select a size and format to start. The images show the available pump-head and complete-pump options; motor, hose, accessories and final operating conditions are confirmed before quotation.</p>
+          <div class="config-note"><span>✓</span><p>Your selection will be carried into the inquiry. Final flow, head, motor and accessories are confirmed before quotation.</p></div>
+          <div class="variant-grid">
+            {{ range $index, $variant := $product.variants }}
+              {{ $variantImage := resources.Get $variant.image }}
+              <button class="variant-option{{ if eq $index 0 }} is-selected{{ end }}" type="button" data-variant-id="{{ $variant.id }}" data-variant-label="{{ $variant.label }}" data-variant-note="{{ $variant.note }}" data-variant-image="{{ $variantImage.RelPermalink }}" data-variant-alt="{{ $variant.image_alt }}" data-variant-type="{{ $variant.type }}" aria-pressed="{{ if eq $index 0 }}true{{ else }}false{{ end }}">
+                <span class="variant-size">{{ $variant.size }}</span><span class="variant-type">{{ $variant.type }}</span><span class="variant-label">{{ $variant.label }}</span>
+              </button>
+            {{ end }}
+          </div>
+          <p class="selected-note" id="selected-note">{{ (index $product.variants 0).note }}</p>
+        </div>
+        <div class="config-image"><img id="config-image" src="{{ $configImage.RelPermalink }}" alt="{{ $selectedVariant.image_alt }}" loading="lazy"><div class="config-image-caption"><span id="config-image-label">{{ $selectedVariant.type }}</span><strong id="config-image-caption">{{ $selectedVariant.label }}</strong></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-section" id="quote">
+    <div class="container quote-grid">
+      <div class="quote-message">
+        <p class="eyebrow eyebrow-light">REQUEST A QUOTE</p>
+        <h2>Tell us about the job.</h2>
+        <p>Choose a starting configuration and share the details that affect the setup: what you are moving, how far it needs to go and what power is available. We will review these details before confirming the configuration.</p>
+        <div class="quote-points"><span><b>01</b> Selected configuration stays with your inquiry</span><span><b>02</b> Material and job conditions guide the quote</span><span><b>03</b> No payment is required on this page</span></div>
+      </div>
+      <form class="quote-form" id="quote-form" data-form-mode="test">
+        <div class="form-heading"><span>YHCB / QUOTE REQUEST</span><strong>Start your inquiry</strong></div>
         <input type="hidden" name="product" value="YHCB">
-        <input type="hidden" name="selected_model" value="YHCB-TEST">
+        <input type="hidden" name="selected_model" value="YHCB-25-SINGLE">
+        <input type="hidden" name="selected_configuration" value="2.5 in single pump head">
         <input type="hidden" name="utm_source">
         <input type="hidden" name="utm_medium">
         <input type="hidden" name="utm_campaign">
         <input type="hidden" name="utm_term">
         <input type="hidden" name="gclid">
-
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" autocomplete="name" required>
-
-        <label for="email">Work email</label>
-        <input id="email" name="email" type="email" autocomplete="email" required>
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="4" placeholder="Tell us what you would like to test."></textarea>
-
-        <button class="button button-primary" type="submit">Submit test inquiry</button>
+        <div class="form-selected"><span>Selected configuration</span><strong id="form-selected-model">2.5 in single pump head</strong></div>
+        <div class="form-row"><label for="name">Your name <em>*</em></label><input id="name" name="name" type="text" autocomplete="name" required></div>
+        <div class="form-row"><label for="email">Business email <em>*</em></label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="form-two-col"><div class="form-row"><label for="company">Company</label><input id="company" name="company" type="text" autocomplete="organization"></div><div class="form-row"><label for="phone">Phone / WhatsApp</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div></div>
+        <div class="form-two-col"><div class="form-row"><label for="medium">Material to move</label><input id="medium" name="medium" type="text" placeholder="e.g. pig manure, wastewater"></div><div class="form-row"><label for="quantity">Number of units</label><input id="quantity" name="quantity" type="text" placeholder="e.g. 1"></div></div>
+        <div class="form-row"><label for="message">Job details</label><textarea id="message" name="message" rows="4" placeholder="Distance, lift, power supply, solids, destination country…"></textarea></div>
+        <button class="button button-orange button-full" type="submit">Request a quote <span>→</span></button>
         <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
+        <p class="privacy-note">Preview mode until the approved Formspree endpoint is connected.</p>
       </form>
+    </div>
+  </section>
+
+  <section class="catalog-section" aria-labelledby="catalog-heading">
+    <div class="container catalog-inner">
+      <div>
+        <p class="eyebrow">EXPLORE MORE PUMP SOLUTIONS</p>
+        <h2 id="catalog-heading">Explore the full pump range.</h2>
+        <p>Looking for another configuration or application? Explore the complete BuyGearPump product range.</p>
+      </div>
+      <a class="catalog-link" href="https://buygearpump.com/products/" data-event="all_products_click">View all products <span>↗</span></a>
     </div>
   </section>
 </main>
 
+<div class="mobile-cta"><a href="#quote" data-event="cta_click">Request a quote</a><span id="mobile-selected">2.5 in selected</span></div>
+
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <span>YHCB test landing page</span>
-    <span>Independent Hugo site · {{ now.Year }}</span>
+  <div class="container footer-contact-grid">
+    <div class="footer-intro">
+      <h2>Need more help?</h2>
+    </div>
+    <div class="contact-panel">
+      <p class="contact-title">Connect With Us</p>
+      <div class="contact-list">
+        <a href="tel:+8618622392864"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2.8h10v18.4H7z"/><path d="M10 5h4M11 18.2h2"/></svg><span>+86 18622392864</span></a>
+        <a href="https://wa.me/8618622392864" target="_blank" rel="noopener"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.4 8.4 0 0 0-7.2 12.7L3.5 20.5l4.8-1.2A8.4 8.4 0 1 0 12 3.2Z"/><path d="M9 8.8c.2 2 2.2 4 4.2 4.2l1-.9c.2-.2.5-.2.8 0l1.1.6c.3.2.4.5.2.8-.5 1-1.2 1.3-2.1 1.2-3.3-.5-5.3-2.5-5.7-5.1-.1-.8.2-1.5 1-1.9.3-.1.6 0 .7.3l.6 1.3c.1.3.1.5-.1.7l-.7.8Z"/></svg><span>+86 18622392864 <small>WhatsApp</small></span></a>
+        <a href="mailto:sale@buygearpump.com"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5.5h17v13h-17z"/><path d="m4 6 8 6 8-6"/></svg><span>sale@buygearpump.com</span></a>
+        <span class="contact-address"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-6.2 6-11A6 6 0 0 0 6 10c0 4.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg><span>Botou City, Cangzhou, Hebei Province, China</span></span>
+      </div>
+    </div>
   </div>
+  <div class="container footer-inner"><span>YHCB mobile pump · BuyGearPump</span><span><a href="https://buygearpump.com/products/" data-event="all_products_click">All products</a> · © {{ now.Year }} BuyGearPump</span></div>
 </footer>
 {{ end }}

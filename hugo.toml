@@ -1,7 +1,7 @@
 baseURL = 'https://yhcb.buygearpump.com/'
 languageCode = 'en-us'
-title = 'YHCB Test Landing Page'
+title = 'YHCB Mobile Pump | BuyGearPump'
 disableKinds = ['taxonomy', 'term']
 
 [params]
-  pageMode = 'test'
+  pageMode = 'quote-preview'

@@ -1,4 +1,4 @@
 +++
-title = 'YHCB Test Landing Page'
-description = 'A minimal test landing page for the YHCB product family.'
+title = 'YHCB Mobile Pump'
+description = 'Choose a YHCB mobile pump size and format for manure, wastewater or sludge transfer, then request a matched quotation.'
 +++
