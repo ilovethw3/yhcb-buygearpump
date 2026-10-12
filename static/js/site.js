@@ -124,6 +124,12 @@
       })
         .then(function (response) {
           if (!response.ok) throw new Error('Formspree submission failed');
+          if (typeof window.fbq === 'function') {
+            window.fbq('track', 'Lead', {
+              content_name: 'YHCB Mobile Pump',
+              content_category: 'quote'
+            });
+          }
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({
             event: 'lead_submit',
