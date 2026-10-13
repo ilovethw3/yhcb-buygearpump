@@ -130,6 +130,11 @@
               content_category: 'quote'
             });
           }
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'conversion', {
+              send_to: 'AW-18510474564/zrGWCL2IypsdEMTavfpE'
+            });
+          }
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({
             event: 'lead_submit',
